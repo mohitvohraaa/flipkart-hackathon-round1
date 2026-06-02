@@ -1,0 +1,172 @@
+Train: (77299, 11)  Test: (41778, 10)
+Train days: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23)]
+Test  days: [np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13)]
+Train minutes: [np.int64(0), np.int64(15), np.int64(30), np.int64(45)]
+Test  minutes: [np.int64(0), np.int64(15), np.int64(30), np.int64(45)]
+
+=== Computing target encodings... ===
+  enc_rt_geo6  : Done
+  enc_geo6     : Done
+  enc_rt_minute: Done
+  enc_rt_day   : Done
+
+Features: 45 (37 num + 8 cat)
+
+=== Time-based CV: 5 folds ===
+  Fold 1: train days 0-8 (39304 rows) → val days 9-13 (17534 rows)
+  Fold 2: train days 0-13 (56838 rows) → val days 14-18 (10619 rows)
+  Fold 3: train days 0-18 (67457 rows) → val days 19-23 (9842 rows)
+  Fold 4: train days 4-18 (46198 rows) → val days 19-23 (9842 rows)
+  Fold 5: train days 9-18 (28153 rows) → val days 19-23 (9842 rows)
+
+============================================================
+TRAINING MODELS WITH TIME-BASED CV
+============================================================
+
+--- CatBoost ---
+  catboost seed=42 Fold 1: R² = 0.934557
+  catboost seed=42 Fold 2: R² = 0.756952
+  catboost seed=42 Fold 3: R² = 0.786285
+  catboost seed=42 Fold 4: R² = 0.778392
+  catboost seed=42 Fold 5: R² = 0.762147
+  → catboost seed=42: CV R² = 0.803666 ± 0.066301
+  catboost seed=123 Fold 1: R² = 0.930349
+  catboost seed=123 Fold 2: R² = 0.753222
+  catboost seed=123 Fold 3: R² = 0.773609
+  catboost seed=123 Fold 4: R² = 0.773455
+  catboost seed=123 Fold 5: R² = 0.759354
+  → catboost seed=123: CV R² = 0.797998 ± 0.066652
+  catboost seed=456 Fold 1: R² = 0.931920
+  catboost seed=456 Fold 2: R² = 0.753289
+  catboost seed=456 Fold 3: R² = 0.781340
+  catboost seed=456 Fold 4: R² = 0.768047
+  catboost seed=456 Fold 5: R² = 0.775803
+  → catboost seed=456: CV R² = 0.802080 ± 0.065601
+
+--- LightGBM ---
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[736]	valid_0's rmse: 0.0423265
+  lgb seed=42 Fold 1: R² = 0.937430
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[61]	valid_0's rmse: 0.0671555
+  lgb seed=42 Fold 2: R² = 0.764572
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[80]	valid_0's rmse: 0.0491423
+  lgb seed=42 Fold 3: R² = 0.784197
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[71]	valid_0's rmse: 0.0493859
+  lgb seed=42 Fold 4: R² = 0.782052
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[73]	valid_0's rmse: 0.0485975
+  lgb seed=42 Fold 5: R² = 0.788956
+  → lgb seed=42: CV R² = 0.811442 ± 0.063532
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[418]	valid_0's rmse: 0.0421316
+  lgb seed=123 Fold 1: R² = 0.938005
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[60]	valid_0's rmse: 0.0674159
+  lgb seed=123 Fold 2: R² = 0.762743
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[76]	valid_0's rmse: 0.0497298
+  lgb seed=123 Fold 3: R² = 0.779007
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[73]	valid_0's rmse: 0.0499301
+  lgb seed=123 Fold 4: R² = 0.777223
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[74]	valid_0's rmse: 0.0488314
+  lgb seed=123 Fold 5: R² = 0.786920
+  → lgb seed=123: CV R² = 0.808779 ± 0.065083
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[630]	valid_0's rmse: 0.0423597
+  lgb seed=456 Fold 1: R² = 0.937332
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[62]	valid_0's rmse: 0.0670969
+  lgb seed=456 Fold 2: R² = 0.764982
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[81]	valid_0's rmse: 0.048699
+  lgb seed=456 Fold 3: R² = 0.788074
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[80]	valid_0's rmse: 0.0489442
+  lgb seed=456 Fold 4: R² = 0.785934
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[75]	valid_0's rmse: 0.0481943
+  lgb seed=456 Fold 5: R² = 0.792444
+  → lgb seed=456: CV R² = 0.813753 ± 0.062511
+
+--- XGBoost ---
+  xgb seed=42 Fold 1: R² = 0.926166
+  xgb seed=42 Fold 2: R² = 0.735845
+  xgb seed=42 Fold 3: R² = 0.786430
+  xgb seed=42 Fold 4: R² = 0.781112
+  xgb seed=42 Fold 5: R² = 0.780365
+  → xgb seed=42: CV R² = 0.801983 ± 0.064716
+  xgb seed=123 Fold 1: R² = 0.928957
+  xgb seed=123 Fold 2: R² = 0.734367
+  xgb seed=123 Fold 3: R² = 0.781074
+  xgb seed=123 Fold 4: R² = 0.774480
+  xgb seed=123 Fold 5: R² = 0.773157
+  → xgb seed=123: CV R² = 0.798407 ± 0.067313
+  xgb seed=456 Fold 1: R² = 0.923132
+  xgb seed=456 Fold 2: R² = 0.733303
+  xgb seed=456 Fold 3: R² = 0.782331
+  xgb seed=456 Fold 4: R² = 0.781030
+  xgb seed=456 Fold 5: R² = 0.779612
+  → xgb seed=456: CV R² = 0.799882 ± 0.064339
+
+============================================================
+ENSEMBLE
+============================================================
+  CatBoost OOF R² = 0.233804
+  LightGBM OOF R² = 0.237531
+  XGBoost OOF R² = 0.229557
+  CatBoost ensemble weight = 0.3336
+  LightGBM ensemble weight = 0.3389
+  XGBoost ensemble weight = 0.3275
+
+  Blended OOF R² = 0.236151
+
+============================================================
+RETRAINING ON FULL DATA & PREDICTING
+============================================================
+
+  CatBoost full retrain...
+
+  LightGBM full retrain...
+
+  XGBoost full retrain...
+
+  Raw prediction range: [0.005259, 2.991508]
+
+  Applying RoadType demand bounds...
+  Clipped 4348/41778 predictions (10.4%)
+  Final range: [0.005259, 1.000000]
+
+  Saved submission.csv (41778 rows)
+  Submission format verified ✓
+
+============================================================
+FINAL SUMMARY
+============================================================
+  Train: 77299 rows, 45 features
+  Test:  41778 rows
+  Time-based CV folds: 5
+  Models: CatBoost, LightGBM, XGBoost × 3 seeds each
+  Ensemble OOF R²: 0.236151
+  RoadType bounds applied: Yes
+  Submission: submission.csv
+Done!

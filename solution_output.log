@@ -1,0 +1,236 @@
+Train: (77299, 11)  Test: (41778, 10)
+Train after FE: (77299, 43), Test: (41778, 42)
+Features: 38 (31 num + 7 cat)
+
+============================================================
+ROUND 1: BASELINES (No target encoding)
+============================================================
+
+--- CatBoost Baseline ---
+  Fold 1: R² = 0.838545
+  Fold 2: R² = 0.843386
+  Fold 3: R² = 0.844296
+  Fold 4: R² = 0.849241
+  Fold 5: R² = 0.853084
+  CV R² = 0.845710 ± 0.005012
+
+--- LightGBM Baseline ---
+Training until validation scores don't improve for 80 rounds
+Early stopping, best iteration is:
+[863]	valid_0's rmse: 0.0567566
+  Fold 1: R² = 0.837648
+Training until validation scores don't improve for 80 rounds
+Early stopping, best iteration is:
+[918]	valid_0's rmse: 0.0565855
+  Fold 2: R² = 0.841572
+Training until validation scores don't improve for 80 rounds
+Early stopping, best iteration is:
+[668]	valid_0's rmse: 0.0552278
+  Fold 3: R² = 0.842076
+Training until validation scores don't improve for 80 rounds
+Early stopping, best iteration is:
+[834]	valid_0's rmse: 0.0558363
+  Fold 4: R² = 0.849142
+Training until validation scores don't improve for 80 rounds
+Early stopping, best iteration is:
+[616]	valid_0's rmse: 0.0560909
+  Fold 5: R² = 0.850561
+  CV R² = 0.844200 ± 0.004883
+
+--- XGBoost Baseline ---
+  Fold 1: R² = 0.836983
+  Fold 2: R² = 0.841017
+  Fold 3: R² = 0.841757
+  Fold 4: R² = 0.846990
+  Fold 5: R² = 0.851142
+  CV R² = 0.843578 ± 0.004944
+
+--------------------------------------------------
+  CatBoost    : 0.845710 ± 0.005012
+  LightGBM    : 0.844200 ± 0.004883
+  XGBoost     : 0.843578 ± 0.004944
+
+--- CatBoost Top-15 Features ---
+   1. tier_x_lv                 21.735294
+   2. road_tier                 17.743924
+   3. is_highway                13.927972
+   4. lat                       8.789917
+   5. geo_p5_highway_ratio      6.668222
+   6. geo_p5_freq               4.696333
+   7. tier_x_landmarks          3.760061
+   8. lng                       3.605995
+   9. is_street                 3.385136
+  10. geo_p5                    2.885407
+  11. tier_x_hour               2.396224
+  12. hour_sin                  1.482990
+  13. time_of_day               1.423039
+  14. rt_lanes_lv               1.098509
+  15. hour_cos                  0.942064
+
+--- LightGBM Top-15 Features ---
+   1. lat                       3924.800000
+   2. geo_p5_highway_ratio      2492.000000
+   3. Temperature               2076.400000
+   4. geo_p5_freq               1822.800000
+   5. hour_x_temp               1777.200000
+   6. time_of_day               1519.000000
+   7. geo_p5                    1457.600000
+   8. hour_x_lanes              1176.600000
+   9. lng                       1045.600000
+  10. tier_x_hour               878.800000
+  11. hour_sin                  768.400000
+  12. hour_cos                  668.000000
+  13. rt_lanes_lv               650.200000
+  14. NumberofLanes             446.000000
+  15. hour                      422.000000
+
+--- XGBoost Top-15 Features ---
+   1. is_highway                0.646519
+   2. road_tier                 0.196446
+   3. is_street                 0.099818
+   4. tier_x_lv                 0.030569
+   5. is_residential            0.005639
+   6. RoadType                  0.001925
+   7. geo_p5_highway_ratio      0.001501
+   8. lng                       0.001233
+   9. geo_p5_freq               0.001118
+  10. is_day49                  0.001082
+  11. has_many_lanes            0.001029
+  12. NumberofLanes             0.000960
+  13. RoadType_missing          0.000879
+  14. lat                       0.000866
+  15. hour_sin                  0.000814
+
+============================================================
+ROUND 2: HYPERPARAMETER TUNING
+============================================================
+
+--- CatBoost Tuned ---
+  Fold 1: R² = 0.837745
+  Fold 2: R² = 0.841499
+  Fold 3: R² = 0.842691
+  Fold 4: R² = 0.849631
+  Fold 5: R² = 0.852953
+  CV R² = 0.844904 ± 0.005565
+
+--- LightGBM Tuned ---
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[1019]	valid_0's rmse: 0.0568854
+  Fold 1: R² = 0.836910
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[1034]	valid_0's rmse: 0.0564944
+  Fold 2: R² = 0.842081
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[1263]	valid_0's rmse: 0.0552867
+  Fold 3: R² = 0.841739
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[1032]	valid_0's rmse: 0.0560264
+  Fold 4: R² = 0.848114
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[984]	valid_0's rmse: 0.0561403
+  Fold 5: R² = 0.850298
+  CV R² = 0.843828 ± 0.004806
+
+--- XGBoost Tuned ---
+  Fold 1: R² = 0.811839
+  Fold 2: R² = 0.817461
+  Fold 3: R² = 0.813616
+  Fold 4: R² = 0.824481
+  Fold 5: R² = 0.825354
+  CV R² = 0.818550 ± 0.005514
+
+--------------------------------------------------
+ALL RESULTS (CV R²)
+--------------------------------------------------
+  CatBoost            : 0.845710 ± 0.005012
+  LightGBM            : 0.844200 ± 0.004883
+  XGBoost             : 0.843578 ± 0.004944
+  CatBoost_Tuned      : 0.844904 ± 0.005565
+  LightGBM_Tuned      : 0.843828 ± 0.004806
+  XGBoost_Tuned       : 0.818550 ± 0.005514
+
+★ Champion: CatBoost (CV R² = 0.845710)
+
+--- CatBoost Top-20 Features ---
+   1. tier_x_lv                 21.735294
+   2. road_tier                 17.743924
+   3. is_highway                13.927972
+   4. lat                       8.789917
+   5. geo_p5_highway_ratio      6.668222
+   6. geo_p5_freq               4.696333
+   7. tier_x_landmarks          3.760061
+   8. lng                       3.605995
+   9. is_street                 3.385136
+  10. geo_p5                    2.885407
+  11. tier_x_hour               2.396224
+  12. hour_sin                  1.482990
+  13. time_of_day               1.423039
+  14. rt_lanes_lv               1.098509
+  15. hour_cos                  0.942064
+  16. hour_x_lanes              0.810682
+  17. hour_x_temp               0.664802
+  18. geo_p4                    0.642807
+  19. Temperature               0.624274
+  20. NumberofLanes             0.545842
+
+============================================================
+ROUND 3: REFINING CHAMPION
+============================================================
+
+--- CatBoost R3 ---
+  Fold 1: R² = 0.837316
+  Fold 2: R² = 0.841673
+  Fold 3: R² = 0.842544
+  Fold 4: R² = 0.848954
+  Fold 5: R² = 0.851510
+  CV R² = 0.844400 ± 0.005145
+
+  R3 CV R² = 0.844400
+
+★ Final Champion: CatBoost (CV R² = 0.845710)
+
+--- Final Top-20 Features ---
+   1. tier_x_lv                 21.735294
+   2. road_tier                 17.743924
+   3. is_highway                13.927972
+   4. lat                       8.789917
+   5. geo_p5_highway_ratio      6.668222
+   6. geo_p5_freq               4.696333
+   7. tier_x_landmarks          3.760061
+   8. lng                       3.605995
+   9. is_street                 3.385136
+  10. geo_p5                    2.885407
+  11. tier_x_hour               2.396224
+  12. hour_sin                  1.482990
+  13. time_of_day               1.423039
+  14. rt_lanes_lv               1.098509
+  15. hour_cos                  0.942064
+  16. hour_x_lanes              0.810682
+  17. hour_x_temp               0.664802
+  18. geo_p4                    0.642807
+  19. Temperature               0.624274
+  20. NumberofLanes             0.545842
+
+============================================================
+RETRAINING CatBoost ON FULL DATA & PREDICTING
+============================================================
+  Single model range:  [-0.002004, 0.950682]
+  Ensemble range:      [0.000719, 0.944412]
+
+Saved submission.csv (41778 rows)
+Submission format verified ✓
+
+============================================================
+FINAL SUMMARY
+============================================================
+Train: 77299, Test: 41778
+Features: 38 (31 num + 7 cat)
+Champion: CatBoost
+Champion CV R²: 0.845710
+Submission: submission.csv
+Done!
